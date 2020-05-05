@@ -1,0 +1,39 @@
+//
+// Markov.hpp
+// Nathanael Epps
+//
+
+#ifndef MARKOV
+#define MARKOV
+
+#include <string>
+#include <map>
+#include <vector>
+#include <utility>
+
+#include "Util.hpp"
+
+using std::string;
+
+class Markov
+{
+public:
+    Markov(string, int);
+    
+    char next(string) const;
+#ifdef DEBUG
+    string toString() const;
+#endif
+private:
+    int order;
+    
+    string input;
+    
+    typedef std::pair<char, int> EntryPair;
+    typedef std::vector<EntryPair> PairVec;
+    typedef std::map<string, PairVec> FreqTable;
+    
+    FreqTable freqTable;
+};
+
+#endif
